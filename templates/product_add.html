@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-index" style="background-image: url({% static 'images/index-bg.png' %});">
+    <div class="container" style="height: 100%; align-content: center;">
+        <div class="d-flex justify-content-center h-100">
+            <div class="row">
+                <div class="align-self-center">
+                    <div class="card" style="width: 25rem;">
+                        <article class="card-body">
+                            <h4 class="card-title text-center text-color">Add Objects</h4>
+                            <form class="form" method="post">{% csrf_token %}
+                            <div class="form-group required">
+                                <label class="control-label text-color" for="inputCategoryName">Category Name</label>
+                                <input type="text" name="categoryname" id="inputCategoryName" class="form-control" placeholder="Category Name" required autofocus>
+                            </div>
+                            <div class="text-center">
+                              <button class="btn btn-main" type="submit">Add</button>
+                            </div>
+                            </form>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-index" style="background-image: url({% static 'images/index-bg.png' %});">
+    <div class="container" style="height: 100%; align-content: center;">
+        <div class="d-flex justify-content-center h-100">
+            <div class="row">
+                <div class="align-self-center">
+                    <div class="card" style="width: 50rem;">
+                        <article class="card-body">
+                            <h4 class="card-title text-center text-color">Your Profile</h4>
+                            <form class="text-color" method="post">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="email" name="email" class="form-control" id="inputEmail" placeholder="{{profile.email}}">
+                                  </div>
+                                </div>
+                                <div class="form-group required">
+                                  <label class="control-label" for="inputHousename">House Name/Number</label>
+                                  <input type="text" name="address1" class="form-control" id="inputHousename" placeholder="{{profile.address2}}">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 required">
+                                        <label class="control-label" for="inputStreet">Street</label>
+                                        <input type="text" name="address2" class="form-control" id="inputStreet" placeholder="{{profile.address1}}">
+                                    </div>
+                                    <div class="form-group col-md-6 required">
+                                        <label class="control-label" for="inputLandmark">Landmark</label>
+                                        <input type="text" name="landmark" class="form-control" id="inputLandmark" placeholder="{{ profile.landmark }}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6 required">
+                                    <label class="control-label" for="inputCity">City</label>
+                                    <input type="text" name="city" class="form-control" id="inputCity" placeholder="{{ profile.city }}">
+                                  </div>
+                                  <div class="form-group col-md-4 required">
+                                    <label class="control-label" for="inputState">State</label>
+                                    <input type="text" name="state" class="form-control" id="inputState" placeholder="{{ profile.state }}">
+                                  </div>
+                                  <div class="form-group col-md-2 required">
+                                    <label class="control-label" for="inputZip">Zip</label>
+                                    <input type="text" name="zip" class="form-control" id="inputZip" placeholder="{{ profile.zip }}">
+                                  </div>
+                                </div>
+                                {% for field in form %}
+                                    <p>
+                                        {% for error in form.errors %}
+                                              <p style="color: red">{{ error }}</p>
+                                        {% endfor %}
+                                    </p>
+                                {% endfor %}
+                                {% if form.non_field_errors %}
+                                    <div style="color: red">
+                                        <p>{{form.non_field_errors}}</p>
+                                    </div>
+                                {% endif %}
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-main">Submit</button>
+                                </div>
+{#                                {{ form.as_p }}#}
+{#                                <input type="submit">#}
+                            </form>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

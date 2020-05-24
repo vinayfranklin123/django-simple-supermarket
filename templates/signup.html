@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-index" style="background-image: url({% static 'images/index-bg.png' %});">
+    <div class="container" style="height: 100%; align-content: center;">
+        <div class="d-flex justify-content-center h-100">
+            <div class="row">
+                <div class="align-self-center">
+                    <div class="card" style="width: 50rem;">
+                        <article class="card-body">
+                            <h4 class="card-title text-center text-color">Sign Up, It's Free!</h4>
+                            <form class="text-color" action="signup" method="post">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                  <div class="form-group col-md-6 required">
+                                    <label class="control-label" for="inputMobno">Mobile Number</label>
+                                    <input type="text" name="mobilenumber" class="form-control" id="inputMobno" placeholder="Mobile Number">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 required">
+                                      <label class="control-label" for="inputPassword">Password</label>
+                                      <input type="password" name="password1" class="form-control" id="inputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="form-group col-md-6 required">
+                                      <label class="control-label" for="inputCPassword4">Confirm Password</label>
+                                      <input type="password" name="password2" class="form-control" id="inputCPassword" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                  <label class="control-label" for="inputHousename">House Name/Number</label>
+                                  <input type="text" name="housename" class="form-control" id="inputHouisename" placeholder="House name/number">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 required">
+                                        <label class="control-label" for="inputStreet">Street</label>
+                                        <input type="text" name="street" class="form-control" id="inputStreet" placeholder="1234 Abc St">
+                                    </div>
+                                    <div class="form-group col-md-6 required">
+                                        <label class="control-label" for="inputLandmark">Landmark</label>
+                                        <input type="text" name="landmark" class="form-control" id="inputLandmark" placeholder="Landmark">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6 required">
+                                    <label class="control-label" for="inputCity">City</label>
+                                    <input type="text" name="city" class="form-control" id="inputCity">
+                                  </div>
+                                  <div class="form-group col-md-4 required">
+                                    <label class="control-label" for="inputState">State</label>
+                                    <input type="text" name="state" class="form-control" id="inputState">
+                                  </div>
+                                  <div class="form-group col-md-2 required">
+                                    <label class="control-label" for="inputZip">Zip</label>
+                                    <input type="text" name="zip" class="form-control" id="inputZip">
+                                  </div>
+                                </div>
+                                {% for field in registration_form %}
+                                    <p>
+                                        {% for error in field.errors %}
+                                              <p style="color: red">{{ error }}</p>
+                                        {% endfor %}
+                                    </p>
+                                {% endfor %}
+                                {% if registration_form.non_field_errors %}
+                                    <div style="color: red">
+                                        <p>{{registration_form.non_field_errors}}</p>
+                                    </div>
+                                {% endif %}
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-main">Sign Up</button>
+                                </div>
+                            </form>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
